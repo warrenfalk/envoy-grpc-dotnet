@@ -1,0 +1,15 @@
+[submodule "proto/udpa"]
+	path = proto/udpa
+	url = https://github.com/cncf/udpa.git
+[submodule "proto/envoy-api"]
+	path = proto/envoy-api
+	url = https://github.com/envoyproxy/data-plane-api.git
+[submodule "proto/googleapis"]
+	path = proto/googleapis
+	url = https://github.com/googleapis/googleapis.git
+[submodule "proto/protoc-gen-validate"]
+	path = proto/protoc-gen-validate
+	url = https://github.com/envoyproxy/protoc-gen-validate.git
+[submodule "proto/opencensus"]
+	path = proto/opencensus
+	url = https://github.com/census-instrumentation/opencensus-proto.git

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="proto\**" />
+    <EmbeddedResource Remove="proto\**" />
+    <None Remove="proto\**" />
+    <Protobuf Include="proto\envoy-api\**\v3\**\*.proto;proto\envoy-api\envoy\annotations\**\*.proto;proto\googleapis\**\*.proto;proto\opencensus\src\**\*.proto;proto\protoc-gen-validate\**\*.proto;proto\udpa\**\*.proto" ProtoRoot="proto\envoy-api;proto\googleapis;proto\udpa;proto\protoc-gen-validate;proto\opencensus\src" OutputDir="$(IntermediateOutputPath)\proto\$([MSBuild]::MakeRelative($(MSBuildThisFileDirectory), %(RelativeDir)))" />
+    <Protobuf Remove="proto\envoy-api\envoy\service\metrics\v3\metrics_service.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.13.0" />
+    <PackageReference Include="Grpc" Version="2.31.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.31.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
