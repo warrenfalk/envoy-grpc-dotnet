@@ -4,30 +4,27 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <!--
+    The following ItemGroup + Target allows the interdependent proto roots to work,
+    Which allows us to pull in the repositories as git submodules and then build them in place
+  -->
+  <ItemGroup>
+    <ProtoRoot Include="proto\envoy-api" />
+    <ProtoRoot Include="proto\udpa" />
+    <ProtoRoot Include="proto\googleapis" />
+    <ProtoRoot Include="proto\opencensus\src" />
+    <ProtoRoot Include="proto\protoc-gen-validate" />
+  </ItemGroup>
   <Target Name="Protobuf_Override" BeforeTargets="_Protobuf_CoreCompile">
     <PropertyGroup>
-      <Protobuf_DepFilesPath>proto\udpa</Protobuf_DepFilesPath>
-      <Protobuf_StandardImportsPath>$(Protobuf_StandardImportsPath);proto\envoy-api;proto\udpa;proto\googleapis;proto\opencensus\src;proto\protoc-gen-validate</Protobuf_StandardImportsPath>
+      <Protobuf_StandardImportsPath>$(Protobuf_StandardImportsPath);@(ProtoRoot)</Protobuf_StandardImportsPath>
     </PropertyGroup>
-    <Message Importance="high" text="Hello World" />
   </Target>
 
   <ItemGroup>
     <Compile Remove="proto\**" />
     <EmbeddedResource Remove="proto\**" />
     <None Remove="proto\**" />
-    <!--
-    <ProtoRoot Include="" />
-    <ProtoRoot Include="" />
-    <ProtoRoot Include="" />
-    <ProtoRoot Include="" />
-    <ProtoRoot Include="" />
-    <Protobuf
-      Include=""
-      ProtoRoot="@(ProtoRoot)"
-      OutputDir="$(IntermediateOutputPath)\proto\$([MSBuild]::MakeRelative($(MSBuildThisFileDirectory), %(RelativeDir)))"
-    />
-    -->
     <Protobuf
       Include="proto\envoy-api\**\v3\**\*.proto"
       ProtoRoot="proto\envoy-api"
