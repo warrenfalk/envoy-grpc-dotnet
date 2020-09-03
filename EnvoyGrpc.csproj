@@ -12,6 +12,9 @@
     <PackageIcon>logo.png</PackageIcon>
     <Product>Envoy.Grpc</Product>
     <PackageId>Envoy.Grpc</PackageId>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <!--
@@ -43,8 +46,10 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <Protobuf Include="proto\envoy-api\**\v3\**\*.proto" ProtoRoot="proto\envoy-api" OutputDir="$(IntermediateOutputPath)\proto\$([MSBuild]::MakeRelative($(MSBuildThisFileDirectory), %(RelativeDir)))" />
+    <Protobuf Include="proto\envoy-api\**\*.proto" ProtoRoot="proto\envoy-api" OutputDir="$(IntermediateOutputPath)\proto\$([MSBuild]::MakeRelative($(MSBuildThisFileDirectory), %(RelativeDir)))" />
+    <Protobuf Remove="proto\envoy-api\**\v4alpha\**\*.proto" />
     <Protobuf Remove="proto\envoy-api\envoy\service\metrics\v3\metrics_service.proto" />
+    <Protobuf Remove="proto\envoy-api\envoy\service\metrics\v2\metrics_service.proto" />
     <Protobuf Include="proto\envoy-api\envoy\annotations\**\*.proto" ProtoRoot="proto\envoy-api" OutputDir="$(IntermediateOutputPath)\proto\$([MSBuild]::MakeRelative($(MSBuildThisFileDirectory), %(RelativeDir)))" />
     <Protobuf Include="proto\googleapis\**\*.proto" ProtoRoot="proto\googleapis" OutputDir="$(IntermediateOutputPath)\proto\$([MSBuild]::MakeRelative($(MSBuildThisFileDirectory), %(RelativeDir)))" />
     <Protobuf Include="proto\opencensus\src\**\*.proto" ProtoRoot="proto\opencensus\src" OutputDir="$(IntermediateOutputPath)\proto\$([MSBuild]::MakeRelative($(MSBuildThisFileDirectory), %(RelativeDir)))" />
